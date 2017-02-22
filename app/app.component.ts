@@ -9,7 +9,7 @@ import { Component } from "@angular/core";
 
 @Component({
   selector: "app",  // 告诉Angular如何将组建引入到HTML
-  template:"<store></store>"
+  template:"<router-outlet></router-outlet>"
 })
 
 export class AppComponent {}
