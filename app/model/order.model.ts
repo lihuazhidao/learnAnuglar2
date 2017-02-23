@@ -11,7 +11,7 @@ export class Order {
   public state: string;
   public zip: string;
   public country: string;
-  public shnipped: boolean = false;
+  public shipped: boolean = false;
 
   constructor(public cart: Cart) {}
 
@@ -19,7 +19,7 @@ export class Order {
     this.id = null;
     this.name = this.address = this.city = null;
     this.state = this.zip = this.country = null;
-    this.shnipped = false;
+    this.shipped = false;
     this.cart.clear();
   }
 

@@ -9,23 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var cart_model_1 = require("./cart.model");
-var Order = (function () {
-    function Order(cart) {
-        this.cart = cart;
-        this.shipped = false;
+var product_repository_1 = require("../model/product.repository");
+var ProductTableComponent = (function () {
+    function ProductTableComponent(repository) {
+        this.repository = repository;
     }
-    Order.prototype.clear = function () {
-        this.id = null;
-        this.name = this.address = this.city = null;
-        this.state = this.zip = this.country = null;
-        this.shipped = false;
-        this.cart.clear();
+    ProductTableComponent.prototype.getProducts = function () {
+        return this.repository.getProducts();
     };
-    Order = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [cart_model_1.Cart])
-    ], Order);
-    return Order;
+    ProductTableComponent.prototype.deleteProduct = function (id) {
+        this.repository.deleteProduct(id);
+    };
+    ProductTableComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            templateUrl: "productTable.component.html"
+        }), 
+        __metadata('design:paramtypes', [product_repository_1.ProductRepository])
+    ], ProductTableComponent);
+    return ProductTableComponent;
 }());
-exports.Order = Order;
+exports.ProductTableComponent = ProductTableComponent;
+;

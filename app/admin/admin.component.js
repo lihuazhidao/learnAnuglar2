@@ -9,23 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var cart_model_1 = require("./cart.model");
-var Order = (function () {
-    function Order(cart) {
-        this.cart = cart;
-        this.shipped = false;
+var router_1 = require("@angular/router");
+var auth_service_1 = require("../model/auth.service");
+var AdminComponent = (function () {
+    function AdminComponent(auth, router) {
+        this.auth = auth;
+        this.router = router;
     }
-    Order.prototype.clear = function () {
-        this.id = null;
-        this.name = this.address = this.city = null;
-        this.state = this.zip = this.country = null;
-        this.shipped = false;
-        this.cart.clear();
+    AdminComponent.prototype.logout = function () {
+        this.auth.clear();
+        this.router.navigateByUrl("/");
     };
-    Order = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [cart_model_1.Cart])
-    ], Order);
-    return Order;
+    AdminComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            templateUrl: "admin.component.html"
+        }), 
+        __metadata('design:paramtypes', [auth_service_1.AuthService, router_1.Router])
+    ], AdminComponent);
+    return AdminComponent;
 }());
-exports.Order = Order;
+exports.AdminComponent = AdminComponent;

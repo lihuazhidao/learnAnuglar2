@@ -9,23 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var cart_model_1 = require("./cart.model");
-var Order = (function () {
-    function Order(cart) {
-        this.cart = cart;
-        this.shipped = false;
+var router_1 = require("@angular/router");
+var auth_service_1 = require("../model/auth.service");
+var AuthGuard = (function () {
+    function AuthGuard(router, auth) {
+        this.router = router;
+        this.auth = auth;
     }
-    Order.prototype.clear = function () {
-        this.id = null;
-        this.name = this.address = this.city = null;
-        this.state = this.zip = this.country = null;
-        this.shipped = false;
-        this.cart.clear();
+    AuthGuard.prototype.canActivate = function (route, state) {
+        if (!this.auth.authenticated) {
+            this.router.navigateByUrl("/admin/auth");
+            return false;
+        }
+        return true;
     };
-    Order = __decorate([
+    AuthGuard = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [cart_model_1.Cart])
-    ], Order);
-    return Order;
+        __metadata('design:paramtypes', [router_1.Router, auth_service_1.AuthService])
+    ], AuthGuard);
+    return AuthGuard;
 }());
-exports.Order = Order;
+exports.AuthGuard = AuthGuard;
